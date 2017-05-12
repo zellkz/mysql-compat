@@ -35,9 +35,9 @@ trait ManageConnections
 
         $options = $this->parseClientFlags($clientFlags);
 		
-		list($ip, $port) = explode(':', $server);
+		list($host, $port) = explode(':', $server);
 		
-		$dsn = 'mysql:host=' . $ip . ';';
+		$dsn = 'mysql:host=' . $host . ';';
 		if ($port) {
 			$dsn .= 'port=' . $port .';';
 		}
