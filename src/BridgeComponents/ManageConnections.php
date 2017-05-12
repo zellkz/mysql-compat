@@ -34,8 +34,15 @@ trait ManageConnections
         }
 
         $options = $this->parseClientFlags($clientFlags);
+		
+		list($ip, $port) = explode(':', $server);
+		
+		$dsn = 'mysql:host=' . $ip . ';';
+		if ($port) {
+			$dsn .= 'port=' . $port .';';
+		}
 
-        return $this->manager->connect("mysql:host={$server};", $username, $password, $options, $newLink);
+        return $this->manager->connect($dsn, $username, $password, $options, $newLink);
     }
 
     protected function parseClientFlags($clientFlags)
